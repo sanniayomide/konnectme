@@ -40,7 +40,23 @@ class _JoinMeetingPageState extends State<JoinMeetingPage> {
     appBar: AppBar(
       toolbarHeight: 88,
       title: const BrandMark(),
-      actions: [ClerkSignOutPanel(), const SizedBox(width: 16)],
+      actions: [
+        IconButton(
+          tooltip: 'Sign out',
+          icon: const Icon(Icons.logout_rounded),
+          onPressed: () async {
+            try {
+              await ClerkAuth.of(context, listen: false).signOut();
+            } catch (_) {
+              if (!context.mounted) return;
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('Could not sign out. Please try again.')),
+              );
+            }
+          },
+        ),
+        const SizedBox(width: 16),
+      ],
     ),
     body: SafeArea(child: LayoutBuilder(builder: (context, constraints) {
       final wide = constraints.maxWidth >= 840;
@@ -93,8 +109,7 @@ class _Introduction extends StatelessWidget {
   Widget build(BuildContext context) => Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
     const Text('LESS DISTANCE. MORE CONNECTION.', style: TextStyle(color: AppTheme.teal, fontSize: 11, fontWeight: FontWeight.w700, letterSpacing: 2)),
     const SizedBox(height: 18),
-    Text('Good conversations
-start here.', style: Theme.of(context).textTheme.displaySmall?.copyWith(fontWeight: FontWeight.w800, letterSpacing: -1.8, height: 1.1)),
+    Text('Good conversations\nstart here.', style: Theme.of(context).textTheme.displaySmall?.copyWith(fontWeight: FontWeight.w800, letterSpacing: -1.8, height: 1.1)),
     const SizedBox(height: 18),
     const Text('A little space for big ideas, familiar faces, and everything in between.', style: TextStyle(fontSize: 17, height: 1.6, color: Color(0xFF60716D))),
     const SizedBox(height: 28),
