@@ -1,8 +1,8 @@
 name: konnectme
-description: "A new Flutter project."
+description: "A thoughtful space for video conversations, powered by Clerk and ZEGO."
 
 
-publish_to: 'none' 
+publish_to: 'none'
 version: 1.0.0+1
 
 environment:
@@ -13,7 +13,7 @@ dependencies:
   flutter:
     sdk: flutter
 
- 
+
   cupertino_icons: ^1.0.8
   zego_uikit_prebuilt_call: ^4.24.6
   flutter_dotenv: ^6.0.1
@@ -31,7 +31,7 @@ dev_dependencies:
 
 flutter:
 
-  asset: 
+  assets:
   - .env
 
   uses-material-design: true
